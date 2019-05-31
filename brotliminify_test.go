@@ -1,8 +1,8 @@
 package brotliminify
 
 import (
-	"testing"
 	"strings"
+	"testing"
 )
 
 func TestCompressHTML(t *testing.T) {

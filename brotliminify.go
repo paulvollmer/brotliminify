@@ -2,8 +2,8 @@ package brotliminify
 
 import (
 	"bytes"
-	"regexp"
 	"io"
+	"regexp"
 
 	"github.com/google/brotli/go/cbrotli"
 	"github.com/tdewolff/minify"
