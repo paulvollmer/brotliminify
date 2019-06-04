@@ -23,5 +23,5 @@ install:
   - go get -v ./...
 script:
   - golint
-  - sudo go test -v
-  - sudo cd benchmark && go build && ./benchmark
+  - go test -v
+  - cd benchmark && go build && ./benchmark
