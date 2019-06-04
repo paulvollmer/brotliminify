@@ -7,6 +7,16 @@ go:
   - 1.12.x
 env:
   - GO111MODULE=on
+  - BUILD_SYSTEM=cmake
+  - C_COMPILER=gcc-4.4
+  - CXX_COMPILER=g++-4.4
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-7
+      - g++-7
 install:
   -
   - git clone https://github.com/google/brotli.git
@@ -15,6 +25,7 @@ install:
   - ../configure-cmake
   - make
   - make test
+  - mkdir -p /usr/local/bin/brotli
   - make install
   - go get -u golang.org/x/lint/golint
   - go get -v ./...
