@@ -15,6 +15,7 @@ import (
 	"github.com/tdewolff/minify/xml"
 )
 
+// Encode minify and encode a given source and return the bytes
 func Encode(source io.Reader) ([]byte, error) {
 	m := minify.New()
 	m.AddFunc("text/css", css.Minify)
@@ -36,6 +37,7 @@ func Encode(source io.Reader) ([]byte, error) {
 	return b2, nil
 }
 
+// Decode a given source and return the bytes
 func Decode(source []byte) ([]byte, error) {
 	return cbrotli.Decode(source)
 }
