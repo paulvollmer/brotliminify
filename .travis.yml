@@ -17,6 +17,7 @@ install:
   - make test
   - sudo mkdir -p /usr/local/bin/brotli
   - sudo make install
+  - cd ../..
   - go get -u golang.org/x/lint/golint
   - go get -v ./...
 script:
