@@ -23,5 +23,5 @@ install:
   - go get -v ./...
 script:
   - golint
-  - go test -v
+  - CGO_FLAGS='-I /usr/local/include' CGO_FLAGS='-L /usr/local/lib' LD_LIBRARY_PATH='/usr/local/lib' go test -v
   - cd benchmark && go build && ./benchmark
