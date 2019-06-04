@@ -1,18 +1,27 @@
 dist: xenial
 language: go
+sudo: true
 go:
   - 1.10.x
   - 1.11.x
   - 1.12.x
 env:
   - GO111MODULE=on
-before-install:
-  - sudo apt-get update
-  - sudo apt-get install brotli -y
 install:
+  # install brotli
+  - git clone https://github.com/google/brotli.git
+  - cd brotli
+  - mkdir out && cd out
+  - ../configure-cmake
+  - make
+  - make test
+  - sudo mkdir -p /usr/local/bin/brotli
+  - sudo make install
+  - cd ../..
+  # install go dependencies
   - go get -u golang.org/x/lint/golint
   - go get -v ./...
 script:
   - golint
-  - go test -v
-  - cd benchmark && go build && ./benchmark
+  - CGO_FLAGS='-I /usr/local/include' CGO_FLAGS='-L /usr/local/lib' LD_LIBRARY_PATH='/usr/local/lib' go test -v
+  # - cd benchmark && CGO_FLAGS='-I /usr/local/include' CGO_FLAGS='-L /usr/local/lib' LD_LIBRARY_PATH='/usr/local/lib' go build && ./benchmark
